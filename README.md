@@ -34,7 +34,7 @@ Fix the frequency and disable turbo boost if possible.
 
 ## Setup
 
-Modify `envs.bash` to change the path to Intel compilers and the number of cores.
+Modify `envs.bash` to change the path to Intel compilers, the number of cores, and the number of sockets.
 
 Try
 ```
@@ -50,7 +50,7 @@ Run:
 ```
 
 After running the script, a plot file (`interrupt_plot.html`) will be output.
-You can see the plot in your browser by opening the file.
+You can see the plot by opening the file in your browser.
 
 You may need to modify `THREADS` variable in `preemption_benchmarks/measure_jobs/timer_measure.bash` to match your machine configuration.
 To get more reliable result, set 10 to `N` in the script.
@@ -83,6 +83,7 @@ Run:
 It will take tens of minutes to be completed, and a plot file (`chol_plot.html`) will be output.
 
 You can change the number of iterations through `REPEAT` variable in `chol/run.bash`.
+The result would heavily depend on the version of Intel OpenMP and MKL.
 
 ## HPGMG
 
@@ -100,6 +101,8 @@ Change `N_WORKERS` in `hpgmg/measure_mpi.sh` to increase the number of data poin
 In that case, `n_workers` in `hpgmg/plot.exs` should be also changed for plotting (e.g., `:lists.seq(4, n_threads, 1)` to plot all points).
 
 ## LAMMPS
+
+It assumes using multiple nodes for computation (e.g., 4 nodes in our experiments); you may need to set some environment variables to use multiple nodes by `mpirun`, probably through a job management system.
 
 Run:
 ```
