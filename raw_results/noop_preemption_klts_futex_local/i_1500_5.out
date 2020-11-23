@@ -1,0 +1,24 @@
+=============================================================
+# of xstreams:             56
+# of threads:              560
+# of repeats:              11
+Use pthread:               false
+Preemption:                On
+# of preemption groups:    56
+Preemption timer interval: 1500 usec
+Preemption type:           ABT_PREEMPTION_NEW_ES
+# of iterations:           30000000
+=============================================================
+
+Iteration 0 started...  [elapsed] 1095936065 nsec
+Iteration 1 started...  [elapsed] 1095756428 nsec
+Iteration 2 started...  [elapsed] 1094504239 nsec
+Iteration 3 started...  [elapsed] 1095041961 nsec
+Iteration 4 started...  [elapsed] 1095011016 nsec
+Iteration 5 started...  [elapsed] 1094799776 nsec
+Iteration 6 started...  [elapsed] 1094864714 nsec
+Iteration 7 started...  [elapsed] 1095009189 nsec
+Iteration 8 started...  [elapsed] 1094510783 nsec
+Iteration 9 started...  [elapsed] 1094840580 nsec
+Iteration 10 started...  [elapsed] 1095589677 nsec
+success!

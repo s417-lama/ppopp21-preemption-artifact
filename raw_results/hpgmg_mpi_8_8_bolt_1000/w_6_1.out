@@ -1,0 +1,180 @@
+
+
+********************************************************************************
+***                            HPGMG-FV Benchmark                            ***
+********************************************************************************
+Requested MPI_THREAD_FUNNELED, got MPI_THREAD_FUNNELED
+2 MPI Tasks of 28 threads
+
+
+===== Benchmark setup ==========================================================
+
+attempting to create a 512^3 level from 8 x 256^3 boxes distributed among 2 tasks...
+  boundary condition = BC_DIRICHLET
+  Decomposing level via Z-mort ordering... done
+  Allocating vectors... done
+  Calculating boxes per process... target=4.000, max=4
+  Creating Poisson (a=0.000000, b=1.000000) test problem
+  calculating D^{-1} exactly for level h=1.953125e-03 using  64 colors...  done (11.996720 seconds)
+
+attempting to create a 256^3 level from 8 x 128^3 boxes distributed among 2 tasks...
+  boundary condition = BC_DIRICHLET
+  Decomposing level via Z-mort ordering... done
+  Allocating vectors... done
+  Calculating boxes per process... target=4.000, max=4
+
+attempting to create a 128^3 level from 8 x 64^3 boxes distributed among 2 tasks...
+  boundary condition = BC_DIRICHLET
+  Decomposing level via Z-mort ordering... done
+  Allocating vectors... done
+  Calculating boxes per process... target=4.000, max=4
+
+attempting to create a 64^3 level from 8 x 32^3 boxes distributed among 2 tasks...
+  boundary condition = BC_DIRICHLET
+  Decomposing level via Z-mort ordering... done
+  Allocating vectors... done
+  Calculating boxes per process... target=4.000, max=4
+
+attempting to create a 32^3 level from 8 x 16^3 boxes distributed among 2 tasks...
+  boundary condition = BC_DIRICHLET
+  Decomposing level via Z-mort ordering... done
+  Allocating vectors... done
+  Calculating boxes per process... target=4.000, max=4
+
+attempting to create a 16^3 level from 8 x 8^3 boxes distributed among 2 tasks...
+  boundary condition = BC_DIRICHLET
+  Decomposing level via Z-mort ordering... done
+  Allocating vectors... done
+  Calculating boxes per process... target=4.000, max=4
+
+attempting to create a 8^3 level from 1 x 8^3 boxes distributed among 2 tasks...
+  boundary condition = BC_DIRICHLET
+  Decomposing level via Z-mort ordering... done
+  Allocating vectors... done
+  Calculating boxes per process... target=0.500, max=1
+
+attempting to create a 4^3 level from 1 x 4^3 boxes distributed among 2 tasks...
+  boundary condition = BC_DIRICHLET
+  Decomposing level via Z-mort ordering... done
+  Allocating vectors... done
+  Calculating boxes per process... target=0.500, max=1
+
+attempting to create a 2^3 level from 1 x 2^3 boxes distributed among 2 tasks...
+  boundary condition = BC_DIRICHLET
+  Decomposing level via Z-mort ordering... done
+  Allocating vectors... done
+  Calculating boxes per process... target=0.500, max=1
+
+  Building restriction and interpolation lists... done
+
+  Building MPI subcommunicator for level  1... done (0.000488 seconds)
+  Building MPI subcommunicator for level  2... done (0.000249 seconds)
+  Building MPI subcommunicator for level  3... done (0.000198 seconds)
+  Building MPI subcommunicator for level  4... done (0.000296 seconds)
+  Building MPI subcommunicator for level  5... done (0.000026 seconds)
+  Building MPI subcommunicator for level  6... done (0.000029 seconds)
+  Building MPI subcommunicator for level  7... done (0.000022 seconds)
+  Building MPI subcommunicator for level  8... done (0.000021 seconds)
+
+  calculating D^{-1} exactly for level h=3.906250e-03 using  64 colors...  done (2.034614 seconds)
+  calculating D^{-1} exactly for level h=7.812500e-03 using  64 colors...  done (0.288063 seconds)
+  calculating D^{-1} exactly for level h=1.562500e-02 using  64 colors...  done (0.042842 seconds)
+  calculating D^{-1} exactly for level h=3.125000e-02 using  64 colors...  done (0.009793 seconds)
+  calculating D^{-1} exactly for level h=6.250000e-02 using  64 colors...  done (0.004730 seconds)
+  calculating D^{-1} exactly for level h=1.250000e-01 using  64 colors...  done (0.001595 seconds)
+  calculating D^{-1} exactly for level h=2.500000e-01 using  64 colors...  done (0.000756 seconds)
+  calculating D^{-1} exactly for level h=5.000000e-01 using   8 colors...  done (0.000096 seconds)
+
+
+
+===== Warming up by running 1 solves ==========================================
+FMGSolve... f-cycle     norm=4.151187824908527e-08  rel=4.153376389499612e-08  done (3.258429 seconds)
+
+
+===== Running 10 solves ========================================================
+FMGSolve... f-cycle     norm=4.151187824908527e-08  rel=4.153376389499612e-08  done (3.257945 seconds)
+FMGSolve... f-cycle     norm=4.151187824908527e-08  rel=4.153376389499612e-08  done (3.256520 seconds)
+FMGSolve... f-cycle     norm=4.151187824908527e-08  rel=4.153376389499612e-08  done (3.253983 seconds)
+FMGSolve... f-cycle     norm=4.151187824908527e-08  rel=4.153376389499612e-08  done (3.257625 seconds)
+FMGSolve... f-cycle     norm=4.151187824908527e-08  rel=4.153376389499612e-08  done (3.256853 seconds)
+FMGSolve... f-cycle     norm=4.151187824908527e-08  rel=4.153376389499612e-08  done (3.258120 seconds)
+FMGSolve... f-cycle     norm=4.151187824908527e-08  rel=4.153376389499612e-08  done (3.256941 seconds)
+FMGSolve... f-cycle     norm=4.151187824908527e-08  rel=4.153376389499612e-08  done (3.257913 seconds)
+FMGSolve... f-cycle     norm=4.151187824908527e-08  rel=4.153376389499612e-08  done (3.255509 seconds)
+FMGSolve... f-cycle     norm=4.151187824908527e-08  rel=4.153376389499612e-08  done (3.257355 seconds)
+
+
+===== Timing Breakdown =========================================================
+
+
+level                                0            1            2            3            4            5            6            7            8 
+level dimension                  512^3        256^3        128^3         64^3         32^3         16^3          8^3          4^3          2^3 
+box dimension                    256^3        128^3         64^3         32^3         16^3          8^3          8^3          4^3          2^3        total
+------------------        ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ 
+smooth                        1.846398     0.472500     0.093674     0.015705     0.003036     0.001247     0.000850     0.000179     0.000000     2.433589
+  max                         1.846398     0.472500     0.093674     0.015810     0.003053     0.001250     0.000850     0.000179     0.000000     2.433714
+  min                         1.834227     0.472230     0.093485     0.015705     0.003036     0.001247     0.000000     0.000000     0.000000     2.419929
+residual                      0.365582     0.048408     0.009755     0.001607     0.000308     0.000104     0.000078     0.000018     0.000010     0.425871
+applyOp                       0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000022     0.000022
+BLAS1                         0.071008     0.002209     0.000566     0.000163     0.000071     0.000051     0.000011     0.000005     0.000039     0.074122
+BLAS3                         0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000
+Boundary Conditions           0.026412     0.014095     0.004818     0.002254     0.001574     0.001127     0.001037     0.001004     0.000358     0.052679
+Restriction                   0.023023     0.004499     0.000683     0.000150     0.000073     0.000189     0.000010     0.000006     0.000000     0.028632
+  local restriction           0.023021     0.004496     0.000680     0.000147     0.000070     0.000062     0.000008     0.000004     0.000000     0.028489
+  pack MPI buffers            0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000
+  unpack MPI buffers          0.000000     0.000000     0.000000     0.000000     0.000000     0.000064     0.000000     0.000000     0.000000     0.000064
+  MPI_Isend                   0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000
+  MPI_Irecv                   0.000000     0.000000     0.000000     0.000000     0.000000     0.000005     0.000000     0.000000     0.000000     0.000005
+  MPI_Waitall                 0.000000     0.000000     0.000000     0.000000     0.000000     0.000055     0.000000     0.000000     0.000000     0.000055
+Interpolation                 0.081774     0.014509     0.002326     0.000443     0.000130     0.000191     0.000029     0.000019     0.000000     0.099421
+  local interpolation         0.081773     0.014508     0.002325     0.000442     0.000129     0.000075     0.000027     0.000017     0.000000     0.099295
+  pack MPI buffers            0.000000     0.000000     0.000000     0.000000     0.000000     0.000078     0.000000     0.000000     0.000000     0.000078
+  unpack MPI buffers          0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000
+  MPI_Isend                   0.000000     0.000000     0.000000     0.000000     0.000000     0.000034     0.000000     0.000000     0.000000     0.000034
+  MPI_Irecv                   0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000
+  MPI_Waitall                 0.000000     0.000000     0.000000     0.000000     0.000000     0.000002     0.000000     0.000000     0.000000     0.000002
+Ghost Zone Exchange           0.088050     0.044013     0.014333     0.005616     0.003231     0.002721     0.000007     0.000007     0.000004     0.157982
+  local exchange              0.053883     0.025745     0.006624     0.002495     0.001321     0.000923     0.000000     0.000000     0.000000     0.090990
+  pack MPI buffers            0.002860     0.001891     0.001019     0.000696     0.000572     0.000715     0.000000     0.000000     0.000000     0.007754
+  unpack MPI buffers          0.002583     0.001782     0.001147     0.000744     0.000636     0.000693     0.000000     0.000000     0.000000     0.007585
+  MPI_Isend                   0.015166     0.007345     0.002698     0.000523     0.000182     0.000069     0.000000     0.000000     0.000000     0.025983
+  MPI_Irecv                   0.000032     0.000051     0.000037     0.000028     0.000014     0.000010     0.000000     0.000000     0.000000     0.000172
+  MPI_Waitall                 0.013512     0.007182     0.002789     0.001103     0.000477     0.000267     0.000000     0.000000     0.000000     0.025330
+MPI_collectives               0.000022     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000000     0.000050     0.000073
+------------------        ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ ------------ 
+Total by level                2.492965     0.595731     0.124972     0.025631     0.008383     0.005411     0.002038     0.001269     0.000439     3.256839
+
+   Total time in MGBuild      2.480461 seconds
+   Total time in MGSolve      3.256870 seconds
+      number of v-cycles             1
+Bottom solver iterations            16
+
+
+
+
+===== Performance Summary ======================================================
+  h=1.953125000000000e-03  DOF=1.342177280000000e+08  time=3.256870  DOF/s=4.121e+07  MPI=2  OMP=28
+
+
+===== Richardson error analysis ================================================
+FMGSolve... f-cycle     norm=4.151187824908527e-08  rel=4.153376389499612e-08  done (3.256251 seconds)
+FMGSolve... f-cycle     norm=5.144231718379189e-07  rel=5.155086782761839e-07  done (0.456701 seconds)
+FMGSolve... f-cycle     norm=7.454875268653183e-06  rel=7.517955872287669e-06  done (0.074312 seconds)
+  h=1.953125000000000e-03  ||error||=9.221160354386249e-10
+  order=4.011
+
+
+===== Deallocating memory ======================================================
+attempting to free the restriction and interpolation lists... done
+attempting to free the     2^3 level... done
+attempting to free the     4^3 level... done
+attempting to free the     8^3 level... done
+attempting to free the    16^3 level... done
+attempting to free the    32^3 level... done
+attempting to free the    64^3 level... done
+attempting to free the   128^3 level... done
+attempting to free the   256^3 level... done
+attempting to free the   512^3 level... done
+
+
+===== Done =====================================================================

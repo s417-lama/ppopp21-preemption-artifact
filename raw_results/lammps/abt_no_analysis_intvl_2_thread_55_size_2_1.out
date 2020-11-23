@@ -1,0 +1,281 @@
+LAMMPS (7 Aug 2019)
+KOKKOS mode is enabled (../kokkos.cpp:85)
+  will use up to 0 GPU(s) per node
+Lattice spacing in x,y,z = 1.6796 1.6796 1.6796
+Created orthogonal box = (0 0 0) to (67.1838 67.1838 67.1838)
+  1 by 2 by 2 MPI processor grid
+Created 256000 atoms
+  create_atoms CPU = 0.681406 secs
+Neighbor list info ...
+  update every 20 steps, delay 0 steps, check no
+  max neighbors/atom: 2000, page size: 100000
+  master list distance cutoff = 2.8
+  ghost atom cutoff = 2.8
+  binsize = 1.4, bins = 48 48 48
+  1 neighbor lists, perpetual/occasional/extra = 1 0 0
+  (1) pair lj/cut/kk, perpetual
+      attributes: full, newton off, kokkos_device
+      pair build: full/bin/kk/device
+      stencil: full/bin/3d
+      bin: kk/device
+Setting up Verlet run ...
+  Unit style    : lj
+  Current step  : 0
+  Time step     : 0.005
+Per MPI rank memory allocation (min/avg/max) = 13.35 | 13.35 | 13.35 Mbytes
+Step Temp E_pair E_mol TotEng Press 
+       0         1.44   -6.7733681            0   -4.6133765    -5.019674 
+     100   0.75865617   -5.7603259            0   -4.6223461   0.19586104 
+[rank 2, worker 0] busy ratio: 0.983961
+[rank 2, worker 1] busy ratio: 0.495056
+[rank 2, worker 2] busy ratio: 0.476515
+[rank 2, worker 3] busy ratio: 0.455872
+[rank 2, worker 4] busy ratio: 0.452360
+[rank 2, worker 5] busy ratio: 0.458297
+[rank 2, worker 6] busy ratio: 0.447450
+[rank 2, worker 7] busy ratio: 0.455690
+[rank 2, worker 8] busy ratio: 0.459954
+[rank 3, worker 0] busy ratio: 0.978932
+[rank 3, worker 1] busy ratio: 0.487036
+[rank 3, worker 2] busy ratio: 0.469896
+[rank 3, worker 3] busy ratio: 0.453814
+[rank 3, worker 4] busy ratio: 0.453236
+[rank 3, worker 5] busy ratio: 0.451804
+[rank 3, worker 6] busy ratio: 0.452080
+[rank 3, worker 7] busy ratio: 0.459148
+[rank 3, worker 8] busy ratio: 0.467605
+[rank 1, worker 0] busy ratio: 0.962955
+[rank 1, worker 1] busy ratio: 0.507770
+[rank 1, worker 2] busy ratio: 0.505189
+[rank 1, worker 3] busy ratio: 0.459531
+[rank 1, worker 4] busy ratio: 0.449591
+[rank 1, worker 5] busy ratio: 0.480490
+[rank 1, worker 6] busy ratio: 0.466650
+[rank 1, worker 7] busy ratio: 0.466640
+[rank 1, worker 8] busy ratio: 0.490687
+[rank 0, worker 0] busy ratio: 0.972478
+[rank 0, worker 1] busy ratio: 0.436589
+[rank 0, worker 2] busy ratio: 0.423672
+[rank 0, worker 3] busy ratio: 0.398898
+[rank 0, worker 4] busy ratio: 0.396782
+[rank 0, worker 5] busy ratio: 0.407451
+[rank 0, worker 6] busy ratio: 0.405164
+[rank 0, worker 7] busy ratio: 0.399833
+[rank 0, worker 8] busy ratio: 0.401651
+[rank 0, worker 9] busy ratio: 0.393219
+[rank 2, worker 9] busy ratio: 0.457592
+[rank 2, worker 10] busy ratio: 0.456426
+[rank 2, worker 11] busy ratio: 0.446011
+[rank 2, worker 12] busy ratio: 0.449762
+[rank 2, worker 13] busy ratio: 0.448630
+[rank 2, worker 14] busy ratio: 0.453943
+[rank 2, worker 15] busy ratio: 0.456280
+[rank 2, worker 16] busy ratio: 0.451676
+[rank 2, worker 17] busy ratio: 0.436850
+[rank 2, worker 18] busy ratio: 0.472107
+[rank 2, worker 19] busy ratio: 0.463105
+[rank 2, worker 20] busy ratio: 0.463501
+[rank 2, worker 21] busy ratio: 0.452812
+[rank 2, worker 22] busy ratio: 0.474996
+[rank 2, worker 23] busy ratio: 0.472510
+[rank 2, worker 24] busy ratio: 0.470247
+[rank 2, worker 25] busy ratio: 0.498305
+[rank 2, worker 26] busy ratio: 0.467991
+[rank 2, worker 27] busy ratio: 0.464771
+[rank 2, worker 28] busy ratio: 0.483843
+[rank 2, worker 29] busy ratio: 0.481756
+[rank 2, worker 30] busy ratio: 0.474113
+[rank 2, worker 31] busy ratio: 0.465772
+[rank 2, worker 32] busy ratio: 0.485041
+[rank 3, worker 9] busy ratio: 0.471726
+[rank 3, worker 10] busy ratio: 0.451733
+[rank 3, worker 11] busy ratio: 0.444802
+[rank 3, worker 12] busy ratio: 0.446546
+[rank 3, worker 13] busy ratio: 0.445981
+[rank 3, worker 14] busy ratio: 0.445232
+[rank 3, worker 15] busy ratio: 0.462448
+[rank 3, worker 16] busy ratio: 0.463272
+[rank 3, worker 17] busy ratio: 0.448940
+[rank 3, worker 18] busy ratio: 0.494933
+[rank 3, worker 19] busy ratio: 0.477293
+[rank 3, worker 20] busy ratio: 0.461494
+[rank 3, worker 21] busy ratio: 0.465739
+[rank 3, worker 22] busy ratio: 0.476378
+[rank 3, worker 23] busy ratio: 0.479132
+[rank 3, worker 24] busy ratio: 0.474875
+[rank 3, worker 25] busy ratio: 0.496882
+[rank 3, worker 26] busy ratio: 0.475502
+[rank 3, worker 27] busy ratio: 0.474207
+[rank 3, worker 28] busy ratio: 0.492202
+[rank 3, worker 29] busy ratio: 0.484304
+[rank 3, worker 30] busy ratio: 0.480724
+[rank 3, worker 31] busy ratio: 0.470990
+[rank 3, worker 32] busy ratio: 0.476115
+[rank 3, worker 33] busy ratio: 0.472049
+[rank 3, worker 34] busy ratio: 0.471081
+[rank 1, worker 9] busy ratio: 0.488643
+[rank 1, worker 10] busy ratio: 0.472685
+[rank 1, worker 11] busy ratio: 0.456577
+[rank 1, worker 12] busy ratio: 0.459795
+[rank 1, worker 13] busy ratio: 0.461175
+[rank 1, worker 14] busy ratio: 0.476959
+[rank 1, worker 15] busy ratio: 0.487261
+[rank 1, worker 16] busy ratio: 0.477060
+[rank 1, worker 17] busy ratio: 0.476272
+[rank 1, worker 18] busy ratio: 0.501177
+[rank 1, worker 19] busy ratio: 0.483668
+[rank 1, worker 20] busy ratio: 0.480294
+[rank 1, worker 21] busy ratio: 0.473062
+[rank 1, worker 22] busy ratio: 0.489048
+[rank 1, worker 23] busy ratio: 0.484623
+[rank 1, worker 24] busy ratio: 0.479237
+[rank 1, worker 25] busy ratio: 0.502347
+[rank 1, worker 26] busy ratio: 0.499428
+[rank 1, worker 27] busy ratio: 0.492631
+[rank 1, worker 28] busy ratio: 0.496329
+[rank 1, worker 29] busy ratio: 0.492310
+[rank 1, worker 30] busy ratio: 0.470385
+[rank 1, worker 31] busy ratio: 0.467149
+[rank 1, worker 32] busy ratio: 0.486179
+[rank 1, worker 33] busy ratio: 0.463754
+[rank 1, worker 34] busy ratio: 0.475112
+[rank 0, worker 10] busy ratio: 0.398174
+[rank 0, worker 11] busy ratio: 0.401150
+[rank 0, worker 12] busy ratio: 0.405026
+[rank 2, worker 33] busy ratio: 0.475590
+[rank 2, worker 34] busy ratio: 0.467940
+[rank 2, worker 35] busy ratio: 0.463330
+[rank 3, worker 35] busy ratio: 0.463464
+[rank 3, worker 36] busy ratio: 0.458440
+[rank 1, worker 35] busy ratio: 0.446564
+[rank 1, worker 36] busy ratio: 0.454465
+[rank 1, worker 37] busy ratio: 0.480208
+[rank 0, worker 13] busy ratio: 0.401669
+[rank 0, worker 14] busy ratio: 0.400655
+[rank 2, worker 36] busy ratio: 0.456566
+[rank 2, worker 37] busy ratio: 0.463385
+[rank 3, worker 37] busy ratio: 0.468094
+[rank 3, worker 38] busy ratio: 0.464579
+[rank 1, worker 38] busy ratio: 0.468064
+[rank 1, worker 39] busy ratio: 0.487739
+[rank 0, worker 15] busy ratio: 0.408767
+[rank 0, worker 16] busy ratio: 0.409104
+[rank 2, worker 38] busy ratio: 0.467569
+[rank 2, worker 39] busy ratio: 0.480419
+[rank 3, worker 39] busy ratio: 0.481567
+[rank 3, worker 40] busy ratio: 0.476193
+[rank 1, worker 40] busy ratio: 0.482368
+[rank 1, worker 41] busy ratio: 0.473500
+[rank 0, worker 17] busy ratio: 0.404760
+[rank 0, worker 18] busy ratio: 0.408255
+[rank 0, worker 19] busy ratio: 0.400312
+[rank 2, worker 40] busy ratio: 0.468846
+[rank 2, worker 41] busy ratio: 0.454239
+[rank 3, worker 41] busy ratio: 0.458961
+[rank 3, worker 42] busy ratio: 0.454551
+[rank 1, worker 42] busy ratio: 0.474502
+[rank 1, worker 43] busy ratio: 0.467877
+[rank 0, worker 20] busy ratio: 0.406252
+[rank 0, worker 21] busy ratio: 0.400379
+[rank 2, worker 42] busy ratio: 0.457447
+[rank 2, worker 43] busy ratio: 0.440716
+[rank 2, worker 44] busy ratio: 0.453725
+[rank 2, worker 45] busy ratio: 0.441007
+[rank 2, worker 46] busy ratio: 0.445593
+[rank 3, worker 43] busy ratio: 0.444563
+[rank 3, worker 44] busy ratio: 0.451980
+[rank 3, worker 45] busy ratio: 0.437256
+[rank 3, worker 46] busy ratio: 0.452062
+[rank 3, worker 47] busy ratio: 0.454055
+[rank 3, worker 48] busy ratio: 0.445583
+[rank 1, worker 44] busy ratio: 0.474024
+[rank 1, worker 45] busy ratio: 0.453895
+[rank 1, worker 46] busy ratio: 0.452334
+[rank 1, worker 47] busy ratio: 0.463371
+[rank 1, worker 48] busy ratio: 0.426988
+[rank 1, worker 49] busy ratio: 0.445065
+[rank 0, worker 22] busy ratio: 0.416666
+[rank 0, worker 23] busy ratio: 0.411669
+[rank 2, worker 47] busy ratio: 0.451451
+[rank 2, worker 48] busy ratio: 0.451592
+[rank 2, worker 49] busy ratio: 0.464376
+[rank 3, worker 49] busy ratio: 0.458212
+[rank 3, worker 50] busy ratio: 0.454056
+[rank 1, worker 50] busy ratio: 0.437529
+[rank 1, worker 51] busy ratio: 0.439608
+[rank 0, worker 24] busy ratio: 0.410357
+[rank 0, worker 25] busy ratio: 0.425040
+[rank 0, worker 26] busy ratio: 0.414088
+[rank 2, worker 50] busy ratio: 0.452676
+[rank 2, worker 51] busy ratio: 0.462307
+[rank 3, worker 51] busy ratio: 0.467994
+[rank 3, worker 52] busy ratio: 0.434407
+[rank 1, worker 52] busy ratio: 0.427097
+[rank 1, worker 53] busy ratio: 0.435605
+[rank 0, worker 27] busy ratio: 0.418385
+[rank 0, worker 28] busy ratio: 0.415650
+[rank 2, worker 52] busy ratio: 0.437446
+[rank 2, worker 53] busy ratio: 0.432504
+[rank 3, worker 53] busy ratio: 0.431710
+[rank 3, worker 54] busy ratio: 0.449726
+[rank 1, worker 54] busy ratio: 0.454123
+[rank 1, worker 55] busy ratio: 0.479305
+[rank 0, worker 29] busy ratio: 0.419177
+[rank 0, worker 30] busy ratio: 0.409580
+[rank 2, worker 54] busy ratio: 0.459151
+[rank 2, worker 55] busy ratio: 0.500987
+[rank 3, worker 55] busy ratio: 0.469272
+[rank 0, worker 31] busy ratio: 0.413338
+[rank 0, worker 32] busy ratio: 0.422520
+[rank 0, worker 33] busy ratio: 0.414588
+[rank 0, worker 34] busy ratio: 0.415527
+[rank 0, worker 35] busy ratio: 0.403691
+[rank 0, worker 36] busy ratio: 0.399364
+[rank 0, worker 37] busy ratio: 0.404732
+[rank 0, worker 38] busy ratio: 0.411671
+[rank 0, worker 39] busy ratio: 0.422127
+[rank 0, worker 40] busy ratio: 0.403213
+[rank 0, worker 41] busy ratio: 0.417062
+[rank 0, worker 42] busy ratio: 0.407430
+[rank 0, worker 43] busy ratio: 0.402554
+[rank 0, worker 44] busy ratio: 0.407871
+[rank 0, worker 45] busy ratio: 0.404002
+[rank 0, worker 46] busy ratio: 0.403752
+[rank 0, worker 47] busy ratio: 0.417491
+[rank 0, worker 48] busy ratio: 0.417565
+[rank 0, worker 49] busy ratio: 0.412195
+[rank 0, worker 50] busy ratio: 0.408103
+[rank 0, worker 51] busy ratio: 0.420491
+[rank 0, worker 52] busy ratio: 0.400138
+[rank 0, worker 53] busy ratio: 0.401648
+[rank 0, worker 54] busy ratio: 0.421473
+[rank 0, worker 55] busy ratio: 0.439573
+Loop time of 0.340259 on 4 procs for 100 steps with 256000 atoms
+
+Performance: 126962.047 tau/day, 293.894 timesteps/s
+5254.6% CPU use with 4 MPI tasks x 56 OpenMP threads
+
+MPI task timing breakdown:
+Section |  min time  |  avg time  |  max time  |%varavg| %total
+---------------------------------------------------------------
+Pair    | 0.12551    | 0.13195    | 0.13566    |   1.1 | 38.78
+Neigh   | 0.038881   | 0.040721   | 0.043057   |   0.9 | 11.97
+Comm    | 0.11058    | 0.12068    | 0.14791    |   4.5 | 35.47
+Output  | 0.0020908  | 0.0024901  | 0.0034265  |   1.1 |  0.73
+Modify  | 0.014413   | 0.027551   | 0.037418   |   5.4 |  8.10
+Other   |            | 0.01686    |            |       |  4.96
+
+Nlocal:    64000 ave 64093 max 63904 min
+Histogram: 1 0 0 0 1 1 0 0 0 1
+Nghost:    31651.5 ave 31741 max 31553 min
+Histogram: 1 0 0 0 0 2 0 0 0 1
+Neighs:    0 ave 0 max 0 min
+Histogram: 4 0 0 0 0 0 0 0 0 0
+FullNghs:  4.80697e+06 ave 4.81695e+06 max 4.79721e+06 min
+Histogram: 1 0 0 0 2 0 0 0 0 1
+
+Total # of neighbors = 19227874
+Ave neighs/atom = 75.1089
+Neighbor list builds = 5
+Dangerous builds not checked
+Total wall time: 0:00:01

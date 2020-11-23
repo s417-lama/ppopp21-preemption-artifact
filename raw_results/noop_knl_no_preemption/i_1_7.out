@@ -1,0 +1,21 @@
+=============================================================
+# of xstreams:             68
+# of threads:              680
+# of repeats:              11
+Use pthread:               false
+Preemption:                Off
+# of iterations:           5000000
+=============================================================
+
+Iteration 0 started...  [elapsed] 810519739 nsec
+Iteration 1 started...  [elapsed] 810319345 nsec
+Iteration 2 started...  [elapsed] 810197932 nsec
+Iteration 3 started...  [elapsed] 811782715 nsec
+Iteration 4 started...  [elapsed] 811423557 nsec
+Iteration 5 started...  [elapsed] 811441787 nsec
+Iteration 6 started...  [elapsed] 811577372 nsec
+Iteration 7 started...  [elapsed] 811633475 nsec
+Iteration 8 started...  [elapsed] 811480379 nsec
+Iteration 9 started...  [elapsed] 811298482 nsec
+Iteration 10 started...  [elapsed] 811336140 nsec
+success!

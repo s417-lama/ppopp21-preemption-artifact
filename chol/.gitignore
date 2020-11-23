@@ -1,0 +1,6 @@
+argobots
+bolt
+app_tbb
+app_omp
+*.o
+*.so
