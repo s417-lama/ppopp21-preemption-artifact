@@ -1,0 +1,66 @@
+=============================================================
+# of threads:                    8
+# of timers:                     8
+# of preemption for each thread: 1000
+Interval time of preemption:     1000000 nsec
+Managed timer:                   true
+Sync timer:                      false
+Chain wake-up:                   false
+Thread timer:                    false
+Use timerfd:                     false
+=============================================================
+
+[rank 0]
+  # of preemption:                            1000
+  Average interval time of preemption:        998161 nsec
+  Average time to call a signal handler:      2664 nsec
+  Average time to return to a normal context: 832 nsec
+
+[rank 1]
+  # of preemption:                            1000
+  Average interval time of preemption:        998283 nsec
+  Average time to call a signal handler:      1979 nsec
+  Average time to return to a normal context: 863 nsec
+
+[rank 2]
+  # of preemption:                            1000
+  Average interval time of preemption:        998407 nsec
+  Average time to call a signal handler:      1947 nsec
+  Average time to return to a normal context: 848 nsec
+
+[rank 3]
+  # of preemption:                            1000
+  Average interval time of preemption:        998540 nsec
+  Average time to call a signal handler:      3855 nsec
+  Average time to return to a normal context: 864 nsec
+
+[rank 4]
+  # of preemption:                            1000
+  Average interval time of preemption:        998662 nsec
+  Average time to call a signal handler:      1923 nsec
+  Average time to return to a normal context: 821 nsec
+
+[rank 5]
+  # of preemption:                            1000
+  Average interval time of preemption:        998779 nsec
+  Average time to call a signal handler:      1894 nsec
+  Average time to return to a normal context: 829 nsec
+
+[rank 6]
+  # of preemption:                            1000
+  Average interval time of preemption:        998904 nsec
+  Average time to call a signal handler:      1915 nsec
+  Average time to return to a normal context: 821 nsec
+
+[rank 7]
+  # of preemption:                            1000
+  Average interval time of preemption:        998030 nsec
+  Average time to call a signal handler:      1946 nsec
+  Average time to return to a normal context: 854 nsec
+
+[Total]
+  # of preemption:                            8000
+  Average interval time of preemption:        998470 nsec
+  Average time to call a signal handler:      2265 nsec
+  Average time to return to a normal context: 841 nsec
+

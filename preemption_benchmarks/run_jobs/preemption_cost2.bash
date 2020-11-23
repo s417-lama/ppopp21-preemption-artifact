@@ -3,24 +3,20 @@ set -eo pipefail
 export LC_ALL=C
 export LANG=C
 
-DATETIME=${DATETIME:-$(TZ='America/Chicago' date +%Y-%m-%d_%H-%M-%S)}
-RESULT_DIR=${RESULT_DIR:-${PWD}/results}
-OUT_FILE=${RESULT_DIR}/preemption_cost2_${DATETIME}.out
-ERR_FILE=${RESULT_DIR}/preemption_cost2_${DATETIME}.err
+make clean
+CC=icc CFLAGS="-DUSE_PTHREAD=1" make preemption_cost2
+echo ""
+echo "## Pthread"
+taskset -c 0 ./preemption_cost2 -x 1 -g 1 -r 1 -p 1000
 
 make clean
-make preemption_cost2
+CC=icc CFLAGS="-DPREEMPTION_TYPE=ABT_PREEMPTION_YIELD" make preemption_cost2
+echo ""
+echo "## Argobots (signal-yield)"
+taskset -c 0 ./preemption_cost2 -x 1 -g 1 -r 1 -p 1000 -t 10000
 
-# ./preemption_cost2 -x 1 -g 1 -r 10 -p 100 2> $ERR_FILE | tee $OUT_FILE
-# ./preemption_cost2 -x 56 -g 56 -r 10 -p 100 2> $ERR_FILE | tee $OUT_FILE
-
-ABT_SET_AFFINITY=0 taskset -c 271 ./preemption_cost2 -x 1 -g 1 -r 1 -p 1000 -t 10000 2> $ERR_FILE | tee $OUT_FILE
-# ./preemption_cost2 -x 1 -g 1 -r 1 -p 1000 -t 10000 2> $ERR_FILE | tee $OUT_FILE
-# ./preemption_cost2 -x 56 -g 56 -r 1 -p 1000 -t 10000 2> $ERR_FILE | tee $OUT_FILE
-# ./preemption_cost2 -x 68 -g 68 -r 1 -p 1000 -t 10000 2> $ERR_FILE | tee $OUT_FILE
-# ./preemption_cost2 -x 68 -g 68 -r 1 -p 1000 -t 10000 2> $ERR_FILE | tee $OUT_FILE
-
-# ./preemption_cost2 -x 4 -g 4 -r 1 -p 1000 -t 10000 2> $ERR_FILE | tee $OUT_FILE
-
-ln -sf $OUT_FILE ${RESULT_DIR}/latest.out
-ln -sf $ERR_FILE ${RESULT_DIR}/latest.err
+make clean
+CCC=icc FLAGS="-DPREEMPTION_TYPE=ABT_PREEMPTION_NEW_ES" make preemption_cost2
+echo ""
+echo "## Argobots (KLT-switching)"
+taskset -c 0 ./preemption_cost2 -x 1 -g 1 -r 1 -p 1000 -t 10000

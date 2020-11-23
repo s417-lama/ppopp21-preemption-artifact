@@ -1,9 +1,11 @@
+filename = System.argv() |> Enum.at(0)
+
 files = [
-    # "~/playground/results/timer_cost_sync/latest/*.out",
-    "~/playground/results/timer_cost_naive/latest/*.out",
-    "~/playground/results/timer_cost_managed/latest/*.out",
-    "~/playground/results/timer_cost_central/latest/*.out",
-    "~/playground/results/timer_cost_chain/latest/*.out",
+    # "results/timer_cost_sync/latest/*.out",
+    "results/timer_cost_naive/latest/*.out",
+    "results/timer_cost_managed/latest/*.out",
+    "results/timer_cost_central/latest/*.out",
+    "results/timer_cost_chain/latest/*.out",
 ]
 
 opts = [
@@ -110,4 +112,4 @@ end)
         pad: 0,
     },
 })
-|> PlotlyEx.show()
+|> PlotlyEx.show(filename: filename)

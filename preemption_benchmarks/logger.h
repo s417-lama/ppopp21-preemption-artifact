@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <abt.h>
 
 #ifndef LOGGER_ENABLE
 # define LOGGER_ENABLE 0

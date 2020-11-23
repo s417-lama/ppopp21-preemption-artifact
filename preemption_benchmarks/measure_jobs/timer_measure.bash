@@ -2,7 +2,7 @@
 
 # JOBNAME=timer_cost_naive
 # JOBNAME=timer_cost_sync
-JOBNAME=timer_cost_managed
+# JOBNAME=timer_cost_managed
 # JOBNAME=timer_cost_central
 # JOBNAME=timer_cost_chain
 # JOBNAME=timer_cost_dedicated
@@ -15,7 +15,8 @@ run_job() {
     rm -rf timer_measure
     make timer_measure
 
-    N=10
+    N=1
+    # N=10
     # THREADS=(1 4 8 12 16 20 24 28 32 36 40 44 48 52 56)
     THREADS=(1 2 4 8 14 28 56)
     for thread in ${THREADS[@]}; do

@@ -1,0 +1,30 @@
+=============================================================
+# of threads:                    2
+# of timers:                     2
+# of preemption for each thread: 1000
+Interval time of preemption:     1000000 nsec
+Managed timer:                   false
+Sync timer:                      false
+Chain wake-up:                   false
+Thread timer:                    false
+Use timerfd:                     false
+=============================================================
+
+[rank 0]
+  # of preemption:                            1000
+  Average interval time of preemption:        998998 nsec
+  Average time to call a signal handler:      2510 nsec
+  Average time to return to a normal context: 806 nsec
+
+[rank 1]
+  # of preemption:                            1000
+  Average interval time of preemption:        998997 nsec
+  Average time to call a signal handler:      2122 nsec
+  Average time to return to a normal context: 769 nsec
+
+[Total]
+  # of preemption:                            2000
+  Average interval time of preemption:        998997 nsec
+  Average time to call a signal handler:      2316 nsec
+  Average time to return to a normal context: 787 nsec
+
