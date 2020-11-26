@@ -153,7 +153,7 @@ If you want to further customize the test, please modify `preemption_benchmarks/
 Compile-time flags:
 - `USE_PTHREAD=1`: measures Pthread's preemption overheads
 - `PREEMPTION_TYPE=ABT_PREEMPTION_YIELD`: measures signal-yield's preemption overheads (in Argobots)
-- `PREEMPTION_TYPE=ABT_PREEMPTION_NEW_EW`: measures KLT-switching's preemption overheads (in Argobots)
+- `PREEMPTION_TYPE=ABT_PREEMPTION_NEW_ES`: measures KLT-switching's preemption overheads (in Argobots)
 
 The following arguments are supported at runtime.
 ```
