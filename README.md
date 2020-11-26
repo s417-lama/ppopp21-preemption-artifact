@@ -6,6 +6,8 @@ Shumpei Shiina, Shintaro Iwasaki, Kenjiro Taura, and Pavan Balaji, Lightweight P
 
 ## Directories
 
+All the necessary programs are included in this package.  No download (and thus no internet connection) is necessary except for preliminary software.
+
 - `argobots`
     - Preemptive M:N thread library based on Argobots (v1.0rc1)
 - `bolt`
@@ -21,12 +23,15 @@ Shumpei Shiina, Shintaro Iwasaki, Kenjiro Taura, and Pavan Balaji, Lightweight P
     - LAMMPS (stable_7Aug2019) with experimental in situ analysis implementation with Argobots
     - An Argobots backend is implemented in Kokkos
 - `raw_results`
-    - Contains raw results obtained in our environments
+    - Contains raw results obtained in our environments.  We used this data for the paper
 
 ## Preliminary
 
+Those packages must be available on compute nodes.
+
 - Intel compiler, OpenMP, and MPI
-    - We checked the results only with version 19.0.4.243
+    - We checked the results with version 19.0.4.243
+- Basic compilation tools (CMake, autotools, GNU Make, ...)
 - Singularity
     - Only for graph plotting
 
@@ -36,11 +41,28 @@ Fix the frequency and disable turbo boost if possible.
 
 Modify `envs.bash` to change the path to Intel compilers, the number of cores, and the number of sockets.
 
-Try
 ```
-source envs.bash
+# location of Intel compiler package
+export INTEL_DIR=/soft/compilers/intel-2019/compilers_and_libraries_2019.4.243/linux
+
+# machine config: number of cores per node
+export N_CORES=56
+
+# machine config: number of sockets per node
+export N_SOCKETS=2
+
+# root directory, which must point to the top directory of the artifact
+ROOT_DIR=$(cd $(dirname -- $0) && pwd -P)
+
+# install directory (default: ROOT_DIR/opt)
+INSTALL_DIR=${ROOT_DIR}/opt
 ```
-to check if no error happens.
+
+To check the configurations, try
+```
+bash envs.bash
+```
+and see if no error happens.
 
 ## OS Interrupt Measurement
 
@@ -49,11 +71,30 @@ Run:
 ./measure_interrupt.bash
 ```
 
-After running the script, a plot file (`interrupt_plot.html`) will be output.
-You can see the plot by opening the file in your browser.
+The script will compile the benchmark and dependent libraries (for the first execution), run it, and save execution logs.
 
-You may need to modify `THREADS` variable in `preemption_benchmarks/measure_jobs/timer_measure.bash` to match your machine configuration.
+It will take tens of minutes to be completed.  After running the script, a plot file (`interrupt_plot.html`) will be created.
+You can see the plot by opening the file in your browser.  The results are corresponding to Figure X in the paper.
+
+### Customization of this test
+
+You may want to modify `THREADS` variable in `preemption_benchmarks/measure_jobs/timer_measure.bash` to match your machine configuration.
 To get more reliable result, set 10 to `N` in the script.
+
+If you want to further customize the test, please modify `preemption_benchmarks/measure_jobs/timer_measure.bash`. The following arguments are supported.
+```
+Usage: ./timer_measure [args]
+  Parameters:
+    -n : # of threads (int)
+    -t : # of timers (int)
+    -i : Interval time of preemption in usec (int)
+    -p : # of preemption for each thread
+    -m : Managed timer (0 or 1)
+    -s : Sync timer (0 or 1)
+    -c : Chain wake-up (0 or 1)
+    -d : Thread timer (0 or 1)
+    -f : Use timerfd (0 or 1)
+```
 
 ## Overhead Measurement
 
@@ -83,7 +124,8 @@ Run:
 It will take tens of minutes to be completed, and a plot file (`chol_plot.html`) will be output.
 
 You can change the number of iterations through `REPEAT` variable in `chol/run.bash`.
-The result would heavily depend on the version of Intel OpenMP and MKL.
+Although it shuold work with the latest Intel compiler suite, this benchmark partially depends on the version of Intel OpenMP and MKL because of the reverse-engineering patch (see Section X in the paper for details).
+If it hangs, please pass `-X` to `./measure_chol.bash` to skip tests that rely on this MKL patch.
 
 ## HPGMG
 
