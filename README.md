@@ -10,18 +10,23 @@ All the necessary programs are included in this package.  No download (and thus 
 
 - `argobots`
     - Preemptive M:N thread library based on Argobots (v1.0rc1)
+    - Original repository: https://github.com/pmodels/argobots
 - `bolt`
     - BOLT (v1.0rc3) with a little modification to enable preemption
     - A fair scheduler for HPGMG is also implemented
+    - Original repository: https://github.com/pmodels/bolt
 - `preemption_benchmarks`
     - OS interrupt and preemption overhead measurement
 - `chol`
     - Cholesky decomposition kernel extracted from SLATE
+    - Original repository: https://bitbucket.org/icl/slate
 - `hpgmg`
     - HPGMG-FV version 0.4 with a little modification for performance measurement
+    - Original repository: https://github.com/hpgmg/hpgmg
 - `lammps`
     - LAMMPS (stable_7Aug2019) with experimental in situ analysis implementation with Argobots
     - An Argobots backend is implemented in Kokkos
+    - Original repository: https://github.com/lammps/lammps
 - `raw_results`
     - Contains raw results obtained in our environments.  We used this data for the paper
 
@@ -55,7 +60,7 @@ export N_SOCKETS=2
 ROOT_DIR=$(cd $(dirname -- $0) && pwd -P)
 
 # install directory (default: ROOT_DIR/opt)
-INSTALL_DIR=${ROOT_DIR}/opt
+export INSTALL_DIR=${ROOT_DIR}/opt
 ```
 
 To check the configurations, try
@@ -63,6 +68,14 @@ To check the configurations, try
 bash envs.bash
 ```
 and see if no error happens.
+
+Some of the measurements do not require Intel compilers and can run with gcc:
+```
+./measure_XXX --use-gcc
+```
+where `measure_XXX` is a measurement script explained in the following sections.
+
+If an error is shown with `--use-gcc` option, the measurement must run with Intel compilers (some may be able to run with gcc by fixing some variables; see each error msg).
 
 ## OS Interrupt Measurement
 
@@ -73,8 +86,20 @@ Run:
 
 The script will compile the benchmark and dependent libraries (for the first execution), run it, and save execution logs.
 
-It will take tens of minutes to be completed.  After running the script, a plot file (`interrupt_plot.html`) will be created.
-You can see the plot by opening the file in your browser.  The results are corresponding to Figure X in the paper.
+It will take a few minutes to be completed.  After running the script, a plot file (`interrupt_plot.html`) will be created.
+You can see the plot by opening the file in your browser.  The results are corresponding to Figure 4 in the paper.
+
+You might encounter the massage below at the end of execution:
+```
+Note: singularity or docker must be installed to generate plots.
+
+To generate plots locally, download the 'results' dir in each subdirectory (e.g., 'preemption_benchmarks/results') by 'scp -r' command and run './measure_XXX --only-plots' in your machine with singularity or docker installed.
+```
+
+To generate plots, `singularity` or `docker` command must be avaliable.
+If no error occurs before the above message, the raw results should be stored in `results` dir in each subdirectory.
+Please download the `results` dir to your local machine, place it to the same directory as the remote one, and run the measurement script with `--only-plot` option.
+The above message will disappear with `--no-plot` option, but even without it, the results will be collected normally.
 
 ### Customization of this test
 
@@ -96,7 +121,7 @@ Usage: ./timer_measure [args]
     -f : Use timerfd (0 or 1)
 ```
 
-## Overhead Measurement
+## Relative Overhead Measurement
 
 Run:
 ```
@@ -104,15 +129,42 @@ Run:
 ```
 
 It will take several minutes to be completed, and a plot file (`overhead_plot.html`) will be output.
+The results are corresponding to Figure 6 in the paper.
+
+### Customization of this test
 
 Set `NREPEAT=10` in `preemption_benchmarks/measure_jobs/noop.bash` to get more stable results (which will take several hours).
 See `preemption_benchmarks/README.md` for more details.
 
-You can also run:
+## Absolute Overhead Measurement
+
+Run:
 ```
 ./measure_overhead_direct.bash
 ```
-and see the directly measured overhead of preemption (no plot is generated).
+
+It will show the directly measured overhead of preemption (no plot is generated).
+The results are corresponding to Table 1 in the paper.
+
+### Customization of this test
+
+If you want to further customize the test, please modify `preemption_benchmarks/run_jobs/preemption_cost2.bash`.
+
+Compile-time flags:
+- `USE_PTHREAD=1`: measures Pthread's preemption overheads
+- `PREEMPTION_TYPE=ABT_PREEMPTION_YIELD`: measures signal-yield's preemption overheads (in Argobots)
+- `PREEMPTION_TYPE=ABT_PREEMPTION_NEW_EW`: measures KLT-switching's preemption overheads (in Argobots)
+
+The following arguments are supported at runtime.
+```
+Usage: ./preemption_cost2 [args]
+  Parameters:
+    -x : # of ESs (int)
+    -r : # of repeats (int)
+    -g : # of preemption groups (int)
+    -t : Preemption timer interval in usec (int)
+    -p : # of preemption for each thread
+```
 
 ## Cholesky Decomposition
 
@@ -122,10 +174,11 @@ Run:
 ```
 
 It will take tens of minutes to be completed, and a plot file (`chol_plot.html`) will be output.
+The results are corresponding to Figure 7 in the paper.
 
 You can change the number of iterations through `REPEAT` variable in `chol/run.bash`.
-Although it shuold work with the latest Intel compiler suite, this benchmark partially depends on the version of Intel OpenMP and MKL because of the reverse-engineering patch (see Section X in the paper for details).
-If it hangs, please pass `-X` to `./measure_chol.bash` to skip tests that rely on this MKL patch.
+Although it should work with the latest Intel compiler suite, this benchmark partially depends on the version of Intel MKL and the CPU architecture to use because of the reverse-engineering patch (see Section 4.1 in the paper for details).
+Although it may hang or crash depending on the environment, the problem should be specific to this experiment; run other experiments instead.
 
 ## HPGMG
 
@@ -135,6 +188,7 @@ Run:
 ```
 
 It will take tens of minutes to be completed, and a plot file (`hpgmg_plot.html`) will be output.
+The results are corresponding to Figure 8 in the paper.
 
 `N_SOCKETS` in `envs.bash` is the number of MPI processes used in HPGMG-FV.
 It assumes execution on one node.
@@ -152,6 +206,8 @@ Run:
 ```
 
 It will take tens of minutes to be completed, and a plot file (`lammps_plot.html`) will be output.
+The results are corresponding to Figure 9 in the paper.
+
 To choose a different analysis interval (1 or 2) to plot, change the `intvl` variable in `lammps/plot_size.exs` and run:
 
 ```

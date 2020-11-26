@@ -19,6 +19,7 @@ WARMUP=2
 
 SIZES=(8 12 16 20 24)
 
+make clean
 CCFLAGS="-DSYRK_NEST_TYPE=SYRK_TASK" make
 
 for nt in ${SIZES[@]}; do

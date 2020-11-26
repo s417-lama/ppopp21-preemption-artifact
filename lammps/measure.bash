@@ -35,7 +35,6 @@ mkdir -p $JOB_DIR
 
 cd src
 
-export I_MPI_CXX=icpc
 make yes-kokkos
 make kokkos_abt -j
 make kokkos_omp -j

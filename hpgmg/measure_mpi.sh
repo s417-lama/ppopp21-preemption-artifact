@@ -64,7 +64,8 @@ else
   mkdir -p $JOBDIR
 fi
 
-./configure --CFLAGS=-fopenmp --CC=mpiicc
+./configure --CFLAGS=-fopenmp --CC=mpicc
+make clean
 make -j -C build
 
 # --------------- SIGQUEUE begin ---------------

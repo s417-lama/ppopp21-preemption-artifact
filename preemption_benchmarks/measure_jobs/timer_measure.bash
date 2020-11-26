@@ -12,7 +12,7 @@ job_name() {
 }
 
 run_job() {
-    rm -rf timer_measure
+    make clean
     make timer_measure
 
     N=1

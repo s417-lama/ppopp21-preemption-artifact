@@ -13,7 +13,46 @@ export N_SOCKETS=2
 ROOT_DIR=$(cd $(dirname -- $0) && pwd -P)
 
 # install directory (default: ROOT_DIR/opt)
-INSTALL_DIR=${ROOT_DIR}/opt
+export INSTALL_DIR=${ROOT_DIR}/opt
+
+################################################################
+
+# Parse options
+
+show_help() {
+  echo "Usage: ./measure_XXX [options]"
+  echo "[options]"
+  echo "  --only-plot    generates plots without running any measurement."
+  echo "                 singularity or docker must be installed."
+  echo "  --no-plot      runs measurements without generating plots."
+  echo "                 Please set this option when singularity and docker are not avaliable."
+  echo "  --use-gcc      runs measurements with gcc (default is the Intel compiler)."
+  echo "                 Note that some experiments cannot run without Intel compilers."
+  exit 1
+}
+
+# Whether or not to run measurement
+RUN_MEASUREMENT=true
+
+# Whether or not to generate plots
+GENERATE_PLOT=true
+
+# Whether or not to use gcc
+USE_GCC=false
+
+while getopts ":h-:" opt; do
+  case "$opt" in
+    -)
+      case "${OPTARG}" in
+        only-plot) RUN_MEASUREMENT=false ;;
+        no-plot)   GENERATE_PLOT=false ;;
+        use-gcc)   USE_GCC=true ;;
+        *)         show_help ;;
+      esac
+      ;;
+    *) show_help ;;
+  esac
+done
 
 ################################################################
 
@@ -26,9 +65,21 @@ fi
 # move to ROOT_DIR
 cd $ROOT_DIR
 
-# load intel compilers
-source ${INTEL_DIR}/bin/compilervars.sh intel64
-if test x"$(which icc 2>/dev/null)" = 'x' ; then
-  echo "Error: icc is not found.  Check INTEL_DIR=${INTEL_DIR}"
-  exit 1
+if "$RUN_MEASUREMENT"; then
+  if "$USE_GCC"; then
+    # check gcc
+    if test x"$(which gcc 2>/dev/null)" = 'x' ; then
+      echo "Error: gcc is not found."
+      exit 1
+    fi
+    export CC=gcc CXX=g++
+  else
+    # load intel compilers
+    source ${INTEL_DIR}/bin/compilervars.sh intel64
+    if test x"$(which icc 2>/dev/null)" = 'x' ; then
+      echo "Error: icc is not found.  Check INTEL_DIR=${INTEL_DIR}"
+      exit 1
+    fi
+    export CC=icc CXX=icpc I_MPI_CXX=icpc
+  fi
 fi

@@ -169,7 +169,7 @@ void bind_to_cpu(int cpu, uint64_t tid) {
     sched_setaffinity(tid, sizeof(cpu_set_t), &cpuset);
 }
 
-void preemption_handler() {
+void preemption_handler(int sig, siginfo_t* si, void* uc) {
     int    rank = l_rank;
     tls_t* tls  = &g_tls[rank];
 
@@ -223,7 +223,7 @@ void timer_handler(int sig, siginfo_t* si, void* uc) {
             pthread_kill(g_threads[i], PREEMPTION_SIG);
         }
     }
-    preemption_handler();
+    preemption_handler(sig, si, uc);
 }
 
 void* thread_timer_fn(void* arg) {

@@ -64,8 +64,6 @@ job_name() {
 }
 
 run_job() {
-    rm -f noop
-
     CFLAGS=""
     case $EXEC_TYPE in
         pthread)
@@ -97,7 +95,8 @@ run_job() {
             exit
             ;;
     esac
-    CC=icc CFLAGS=$CFLAGS make noop
+    make clean
+    CFLAGS=$CFLAGS make noop
 
     mv noop $EXEDIR
     cd $EXEDIR
