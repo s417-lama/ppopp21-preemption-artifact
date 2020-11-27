@@ -36,9 +36,10 @@ Those packages must be available on compute nodes.
 
 - Intel compiler, OpenMP, and MPI
     - We checked the results with version 19.0.4.243
+    - Although some benchmarks can run with gcc, it is better to use the Intel compiler suite if possible, especially for application evaluations (chol, hpgmg, lammps), which can be highly affected by the perfomance of OpenMP and MPI
 - Basic compilation tools (CMake, autotools, GNU Make, ...)
-- Singularity
-    - Only for graph plotting
+- Singularity or Docker (not strictly required)
+    - We used containers for graph plotting. If your compute nodes do not have `singularity` or `docker` command, you might want to install singularity or docker on your local system to plot graphs. See `--no-plot` and `--only-plot` options described later.
 
 Fix the frequency and disable turbo boost if possible.
 
@@ -81,7 +82,7 @@ If an error is shown with `--use-gcc` option, the measurement must run with Inte
 
 Run:
 ```
-./measure_interrupt.bash
+./measure_interrupt.bash [OPTIONAL: --no-plot | --only-plot | --use-gcc]
 ```
 
 The script will compile the benchmark and dependent libraries (for the first execution), run it, and save execution logs.
@@ -93,7 +94,9 @@ You might encounter the massage below at the end of execution:
 ```
 Note: singularity or docker must be installed to generate plots.
 
-To generate plots locally, download the 'results' dir in each subdirectory (e.g., 'preemption_benchmarks/results') by 'scp -r' command and run './measure_XXX --only-plots' in your machine with singularity or docker installed.
+To generate plots locally, download the 'results' dir in each subdirectory
+(e.g., 'preemption_benchmarks/results') by 'scp -r' command and run
+'./measure_XXX --only-plots' in your machine with singularity or docker installed.
 ```
 
 To generate plots, `singularity` or `docker` command must be avaliable.
@@ -125,7 +128,7 @@ Usage: ./timer_measure [args]
 
 Run:
 ```
-./measure_overhead.bash
+./measure_overhead.bash [OPTIONAL: --no-plot | --only-plot | --use-gcc]
 ```
 
 It will take several minutes to be completed, and a plot file (`overhead_plot.html`) will be output.
@@ -140,7 +143,7 @@ See `preemption_benchmarks/README.md` for more details.
 
 Run:
 ```
-./measure_overhead_direct.bash
+./measure_overhead_direct.bash [OPTIONAL: --use-gcc]
 ```
 
 It will show the directly measured overhead of preemption (no plot is generated).
@@ -170,7 +173,7 @@ Usage: ./preemption_cost2 [args]
 
 Run:
 ```
-./measure_chol.bash
+./measure_chol.bash [OPTIONAL: --no-plot | --only-plot]
 ```
 
 It will take tens of minutes to be completed, and a plot file (`chol_plot.html`) will be output.
@@ -178,13 +181,13 @@ The results are corresponding to Figure 7 in the paper.
 
 You can change the number of iterations through `REPEAT` variable in `chol/run.bash`.
 Although it should work with the latest Intel compiler suite, this benchmark partially depends on the version of Intel MKL and the CPU architecture to use because of the reverse-engineering patch (see Section 4.1 in the paper for details).
-Although it may hang or crash depending on the environment, the problem should be specific to this experiment; run other experiments instead.
+Although it may hang or crash depending on the environment, the problem should be specific to this experiment; you can run other experiments instead.
 
 ## HPGMG
 
 Run:
 ```
-./measure_hpgmg.bash
+./measure_hpgmg.bash [OPTIONAL: --no-plot | --only-plot]
 ```
 
 It will take tens of minutes to be completed, and a plot file (`hpgmg_plot.html`) will be output.
@@ -202,7 +205,7 @@ It assumes using multiple nodes for computation (e.g., 4 nodes in our experiment
 
 Run:
 ```
-./measure_lammps.bash
+./measure_lammps.bash [OPTIONAL: --no-plot | --only-plot]
 ```
 
 It will take tens of minutes to be completed, and a plot file (`lammps_plot.html`) will be output.
