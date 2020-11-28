@@ -88,21 +88,33 @@ run_lammps_abt() {
 # export LAMMPS_ASYNC_ANALYSIS=0
 # run_lammps_omp no_analysis
 
+# =====================================
+# Pthreads (w/o priority)
+# =====================================
 export LAMMPS_ENABLE_ANALYSIS=1
 export LAMMPS_ASYNC_ANALYSIS=1
 run_lammps_omp async
 
+# =====================================
+# Pthreads (w/ priority)
+# =====================================
 export LAMMPS_ENABLE_ANALYSIS=1
 export LAMMPS_ASYNC_ANALYSIS=1
 export LAMMPS_ANALYSIS_PTHREAD_NICE=19
 run_lammps_omp async_nice
 unset LAMMPS_ANALYSIS_PTHREAD_NICE
 
+# =====================================
+# Argobots (baseline)
+# =====================================
 export LAMMPS_ENABLE_ANALYSIS=0
 export LAMMPS_ASYNC_ANALYSIS=0
 export LAMMPS_ABT_ENABLE_PREEMPTION=0
 run_lammps_abt no_analysis
 
+# =====================================
+# Argobots (w/o priority)
+# =====================================
 export LAMMPS_ENABLE_ANALYSIS=1
 export LAMMPS_ASYNC_ANALYSIS=0
 export LAMMPS_ABT_ENABLE_PREEMPTION=0
@@ -113,6 +125,9 @@ run_lammps_abt sync
 # export LAMMPS_ABT_ENABLE_PREEMPTION=0
 # run_lammps_abt async
 
+# =====================================
+# Argobots (w/ priority)
+# =====================================
 export LAMMPS_ENABLE_ANALYSIS=1
 export LAMMPS_ASYNC_ANALYSIS=1
 export LAMMPS_ABT_ENABLE_PREEMPTION=1

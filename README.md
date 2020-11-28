@@ -179,9 +179,41 @@ Run:
 It will take tens of minutes to be completed, and a plot file (`chol_plot.html`) will be output.
 The results are corresponding to Figure 7 in the paper.
 
-You can change the number of iterations through `REPEAT` variable in `chol/run.bash`.
 Although it should work with the latest Intel compiler suite, this benchmark partially depends on the version of Intel MKL and the CPU architecture to use because of the reverse-engineering patch (see Section 4.1 in the paper for details).
 Although it may hang or crash depending on the environment, the problem should be specific to this experiment; you can run other experiments instead.
+
+### Customization of this test
+
+If you want to further customize the test, please modify `chol/run.bash`.
+The following parameters are ready to be customized.
+
+```
+# Size of each tile (NB x NB)
+NB=1000
+
+# Lookahead depth for prioritizing the critical path; see the SLATE paper [Gates+ SC19] for details
+LOOKAHEAD=8
+
+# Outer parallelism (the number of threads in the outer parallel loop)
+OUTER=8
+
+# Inner parallelism (the number of threads spawned at each Intel MKL subroutine)
+INNER=8
+
+# The number of nested threads spawned at lookahead updates; see the SLATE paper [Gates+ SC19] for details
+SYRK_THREADS=8
+
+# The number of repeats
+REPEAT=10
+
+# The number of warmup runs (performance results are not shown during warmup runs)
+WARMUP=2
+
+# Problem sizes (the number of tiles: n x n)
+SIZES=(8 12 16 20 24)
+```
+
+You can also modify some OpenMP environment variables in the same file.
 
 ## HPGMG
 
@@ -196,8 +228,20 @@ The results are corresponding to Figure 8 in the paper.
 `N_SOCKETS` in `envs.bash` is the number of MPI processes used in HPGMG-FV.
 It assumes execution on one node.
 
+### Customization of this test
+
 Change `N_WORKERS` in `hpgmg/measure_mpi.sh` to increase the number of data points (e.g., `$(seq 4 $NTHREADS)` is used in our experiments).
 In that case, `n_workers` in `hpgmg/plot.exs` should be also changed for plotting (e.g., `:lists.seq(4, n_threads, 1)` to plot all points).
+
+Also, you can easily change the problem size by the following parameters in `hpgmg/measure_mpi.sh`:
+```
+LOG2DIM=8
+NBOX=8
+```
+which are later passed to HPGMG as `./build/bin/hpgmg-fv $LOG2DIM $NBOX` (see the original documentation of HPGMG for details about these parameters).
+
+You may want to change `SLEEP_TIME` variable in `hpgmg/measure_mpi.sh` when you change the problem size.
+After `SLEEP_TIME` (in seconds) elapses, the number of available cores are dynamically reduced, so it is required to make it happen before the main computation begins.
 
 ## LAMMPS
 
@@ -214,8 +258,14 @@ The results are corresponding to Figure 9 in the paper.
 To choose a different analysis interval (1 or 2) to plot, change the `intvl` variable in `lammps/plot_size.exs` and run:
 
 ```
-cd lammps
-../plot.bash plot_size.exs ../lammps_plot.html
+./measure_lammps.bash --only-plot
 ```
 
+### Customization of this test
+
 Increase `N_REPEATS` in `lammps/measure.bash` to get more stable results (e.g., 10 in our experiments).
+Other variables in the script you can change are:
+
+- `ANALYSIS_INTVLS`: how often analysis computation is triggered (larger is less often)
+- `ANALYSIS_THREADS`: the number of analysis threads
+- `SIZES`: problem sizes (the number of atoms is proportional to n^3)

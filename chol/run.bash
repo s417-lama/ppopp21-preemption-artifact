@@ -9,14 +9,28 @@ RESULT_DIR=${RESULT_DIR:-${PWD}/results}
 
 mkdir -p $RESULT_DIR
 
+# Size of each tile (NB x NB)
 NB=1000
+
+# Lookahead depth for prioritizing the critical path; see the SLATE paper [Gates+ SC19] for details
 LOOKAHEAD=8
-SYRK_THREADS=8
+
+# Outer parallelism (the number of threads in the outer parallel loop)
 OUTER=8
+
+# Inner parallelism (the number of threads spawned at each Intel MKL subroutine)
 INNER=8
+
+# The number of nested threads spawned at lookahead updates; see the SLATE paper [Gates+ SC19] for details
+SYRK_THREADS=8
+
+# The number of repeats
 REPEAT=10
+
+# The number of warmup runs (performance results are not shown during warmup runs)
 WARMUP=2
 
+# Problem sizes (the number of tiles: n x n)
 SIZES=(8 12 16 20 24)
 
 make clean
