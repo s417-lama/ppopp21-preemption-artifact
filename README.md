@@ -34,7 +34,7 @@ All the necessary programs are included in this package.  No download (and thus 
 
 Those packages must be available on compute nodes.
 
-- Intel compiler, OpenMP, and MPI
+- Intel compiler, MKL, OpenMP, and MPI
     - We checked the results with version 19.0.4.243
     - Although some benchmarks can run with gcc, it is better to use the Intel compiler suite if possible, especially for application evaluations (chol, hpgmg, lammps), which can be highly affected by the perfomance of OpenMP and MPI
 - Basic compilation tools (CMake, autotools, GNU Make, ...)
@@ -45,24 +45,27 @@ Fix the frequency and disable turbo boost if possible.
 
 ## Setup
 
-Modify `envs.bash` to change the path to Intel compilers, the number of cores, and the number of sockets.
+Modify `envs.bash` to change the number of cores and the number of sockets.
 
 ```
-# location of Intel compiler package
-export INTEL_DIR=/soft/compilers/intel-2019/compilers_and_libraries_2019.4.243/linux
-
 # machine config: number of cores per node
 export N_CORES=56
 
 # machine config: number of sockets per node
 export N_SOCKETS=2
-
-# root directory, which must point to the top directory of the artifact
-ROOT_DIR=$(cd $(dirname -- $0) && pwd -P)
-
-# install directory (default: ROOT_DIR/opt)
-export INSTALL_DIR=${ROOT_DIR}/opt
 ```
+
+Since the measurements require Intel compilers to run by default, please load environmental variables for Intel compilers in each terminal session.
+
+The commands to load Intel compilers are typically:
+```
+$ source <PATH_TO_INTEL_DIR>/bin/compilervars.sh intel64
+```
+or
+```
+$ source <PATH_TO_INTEL_DIR>/oneapi/setvars.sh
+```
+If they do not work, please check the documents for Intel compilers installed in your system.
 
 To check the configurations, try
 ```
@@ -182,6 +185,8 @@ The results are corresponding to Figure 7 in the paper.
 Although it should work with the latest Intel compiler suite, this benchmark partially depends on the version of Intel MKL and the CPU architecture to use because of the reverse-engineering patch (see Section 4.1 in the paper for details).
 Although it may hang or crash depending on the environment, the problem should be specific to this experiment; you can run other experiments instead.
 
+If your machine does not have `numactl` command, please remove `numactl --interleave=all` in `chol/run.bash`.
+
 ### Customization of this test
 
 If you want to further customize the test, please modify `chol/run.bash`.
@@ -255,6 +260,8 @@ Run:
 It will take tens of minutes to be completed, and a plot file (`lammps_plot.html`) will be output.
 The results are corresponding to Figure 9 in the paper.
 
+If your machine does not have `numactl` command, please remove `numactl -iall` in `lammps/measure.bash`.
+
 To choose a different analysis interval (1 or 2) to plot, change the `intvl` variable in `lammps/plot_size.exs` and run:
 
 ```
@@ -269,3 +276,9 @@ Other variables in the script you can change are:
 - `ANALYSIS_INTVLS`: how often analysis computation is triggered (larger is less often)
 - `ANALYSIS_THREADS`: the number of analysis threads
 - `SIZES`: problem sizes (the number of atoms is proportional to n^3)
+
+## Notes
+
+- If benchmark programs finish without any output or error, the error message may not be shown in the console. Because output of benchmarks are stored in `<subdir>/results` dir (e.g., `preemption_benchmarks/results` in case of `./measure_overhead.bash`), please check `<subdir>/results/**/*.err` files to see errors output to stderr.
+- Benchmark programs may crash depending on how much memory is available. In that case, please change the problem sizes by seeing "Customization of this test" subsection in each benchmark above.
+- Even after interrupting the HPGMG benchmark (e.g., by Ctrl-C), the HPGMG process may remain as a backgroud process. Check if `hpgmg-fv` processes are running by `top` command, and if exist, please run `pkill hpgmg-fv` to kill them.

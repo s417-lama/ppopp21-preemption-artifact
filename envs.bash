@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# location of Intel compiler package
-export INTEL_DIR=/soft/compilers/intel-2019/compilers_and_libraries_2019.4.243/linux
-
 # machine config: number of cores per node
 export N_CORES=56
 
@@ -74,12 +71,13 @@ if "$RUN_MEASUREMENT"; then
     fi
     export CC=gcc CXX=g++
   else
-    # load intel compilers
-    source ${INTEL_DIR}/bin/compilervars.sh intel64
+    # check gcc
     if test x"$(which icc 2>/dev/null)" = 'x' ; then
-      echo "Error: icc is not found.  Check INTEL_DIR=${INTEL_DIR}"
+      echo "Error: icc is not found."
+      echo "Please load environment variables for Intel compilers (e.g., 'source \${INTEL_DIR}/bin/compilervars.sh intel64')."
+      echo "--use-gcc option might help if Intel compilers are not installed (see './measure_XXX --help')."
       exit 1
     fi
-    export CC=icc CXX=icpc I_MPI_CXX=icpc
+    export CC=icc CXX=icpc I_MPI_CC=icc I_MPI_CXX=icpc
   fi
 fi

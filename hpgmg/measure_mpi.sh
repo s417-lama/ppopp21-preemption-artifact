@@ -154,7 +154,8 @@ for w in ${N_WORKERS[@]}; do
     ERR_FILE=${JOBDIR}/w_${w}_${i}.err
     echo "## $NTHREADS -> $w ($i / $N)"
 
-    mpirun -np $NPROCESS bash -c "run_hpgmg $LOG2DIM $NBOX $w" 2> $ERR_FILE | tee $OUT_FILE
+    # mpirun -np $NPROCESS bash -c "run_hpgmg $LOG2DIM $NBOX $w" 2> $ERR_FILE | tee $OUT_FILE
+    mpirun -np $NPROCESS bash -c "$(declare -pf run_hpgmg); run_hpgmg $LOG2DIM $NBOX $w" 2> $ERR_FILE | tee $OUT_FILE
   done
 done
 

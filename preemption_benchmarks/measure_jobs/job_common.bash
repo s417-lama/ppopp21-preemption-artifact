@@ -12,7 +12,8 @@ JOBNAME=$(job_name)
 
 DATETIME=${DATETIME:-$(date +%Y-%m-%d_%H-%M-%S)}
 RESULT_DIR=${RESULT_DIR:-${PWD}/results/${JOBNAME}}
-EXEDIR=${PWD}/tmp/$(uuidgen)
+# EXEDIR=${PWD}/tmp/$(uuidgen)
+EXEDIR=$(mktemp -d)
 JOBDIR=${RESULT_DIR}/${DATETIME}
 
 mkdir -p $EXEDIR
