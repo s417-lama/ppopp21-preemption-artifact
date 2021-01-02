@@ -45,6 +45,7 @@ end
 
 baselines =
   Enum.map(sizes, fn size ->
+    # {baseline, _} = get_statistics_of_files.("#{result_dir}/omp_no_analysis_*_size_#{size}_*.out", &(&1))
     {baseline, _} = get_statistics_of_files.("#{result_dir}/abt_no_analysis_*_size_#{size}_*.out", &(&1))
     baseline
   end)
@@ -80,9 +81,23 @@ data
     },
   }
 end)
+|> List.insert_at(-1, %{
+  x: natoms,
+  y: baselines,
+  yaxis: "y2",
+  type: "bar",
+  marker: %{
+    line: %{
+      color: "rgba(0,0,50,0.3)",
+      width: 1.5,
+    },
+    color: "rgba(50,100,200,0.05)",
+  },
+  showlegend: false,
+})
 |> PlotlyEx.plot(%{
-  width:  400,
-  height: 350,
+  width:  450,
+  height: 400,
   xaxis: %{
     # title: %{text: "$\\text{# of atoms}\\; (\\times 10^#{power})$"},
     title: %{text: "# of atoms (&#x00D7; 10&#x207#{power};)"},
@@ -90,6 +105,7 @@ end)
     # exponentformat: "power",
     # dtick: 10_000_000,
     dtick: 1,
+    ticks: "outside",
     range: [0, Enum.max(natoms) * 1.05],
   },
   yaxis: %{
@@ -97,18 +113,26 @@ end)
     tickformat: ",.0%",
     showline: true,
     range: [0, 2.6 / intvl],
+    dtick: 0.5 / intvl,
+  },
+  yaxis2: %{
+    title: %{text: "Execution time (s)"},
+    showline: true,
+    overlaying: "y1",
+    side: "right",
+    range: [0, 52],
   },
   font: %{
     size: 20,
   },
   legend: %{
-    x: 0.4,
+    x: 0.12,
     y: 1.0,
     # bgcolor: "rgba(0,0,0,0)",
   },
   margin: %{
     l: 90,
-    r: 10,
+    r: 60,
     b: 60,
     t: 10,
     pad: 0,

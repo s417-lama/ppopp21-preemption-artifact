@@ -87,8 +87,22 @@ Enum.zip(data_dirs, opts)
     },
   }
 end)
+|> List.insert_at(-1, %{
+  x: n_workers,
+  y: baseline_times,
+  yaxis: "y2",
+  type: "bar",
+  marker: %{
+    line: %{
+      color: "rgba(0,0,50,0.3)",
+      width: 1.5,
+    },
+    color: "rgba(50,100,200,0.05)",
+  },
+  showlegend: false,
+})
 |> PlotlyEx.plot(%{
-  width:  600,
+  width:  700,
   height: 350,
   xaxis: %{
     showgrid: true,
@@ -101,19 +115,27 @@ end)
     showline: true,
     range: [0, 0.6],
   },
+  yaxis2: %{
+    title: %{text: "Execution time (s)"},
+    showline: true,
+    overlaying: "y1",
+    side: "right",
+    range: [0, 6],
+  },
   legend: %{
     x: 0,
     y: 1,
     # x: 1,
     # y: 1,
     bgcolor: "rgba(0,0,0,0)",
+    itemwidth: 50,
   },
   font: %{
     size: 20,
   },
   margin: %{
     l: 80,
-    r: 10,
+    r: 50,
     b: 60,
     t: 10,
     pad: 0,
