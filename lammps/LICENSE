@@ -1,3 +1,12 @@
+================================================================================
+LAMMPS was modified and used for the evaluation in the paper "Lightweight
+Preemptive User-Level Threads" presented in PPoPP '21. The original pieces of
+the code are copyrighted based on the license below, and the pieces of the code
+modified for the paper are copyrighted to the authors of the paper, Shumpei
+Shiina, Shintaro Iwasaki, Kenjiro Taura, and Pavan Balaji, under GNU General
+Public License version 2.
+================================================================================
+
 GNU GENERAL PUBLIC LICENSE
 
 Version 2, June 1991 

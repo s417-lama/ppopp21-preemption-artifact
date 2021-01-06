@@ -5,6 +5,10 @@
 
    This software is distributed under the GNU General Public License.
 
+   Copyright (2021) Shumpei Shiina, Shintaro Iwasaki, Kenjiro Taura, and Pavan
+   Balaji. Modification of the code for the evaluation in the paper
+   "Lightweight Preemptive User-Level Threads" presented in PPoPP '21.
+
    See the README file in the top-level LAMMPS directory.
 ------------------------------------------------------------------------- */
 
